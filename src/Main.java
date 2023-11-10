@@ -24,8 +24,40 @@ public class Main {
             try {
                 int way = Integer.parseInt(wayBuffer.readLine());
                 if (way == 1) {
-                    System.out.println("Вы пошли к торговцу");
+                    System.out.println("Вы пришли к торговцу");
                     returnCity = false;
+
+                    boolean returnSale = false;
+
+                    do {
+                        Dealer dealer = new Dealer();
+                        System.out.println("Купить зелье здоровья (восстановит " + dealer.getHealthPotion() + " жизней) за " + dealer.getPricePotion() + " монет? \n1. Купить \n2. Вернуться в город");
+                        BufferedReader saleBuffer = new BufferedReader(new InputStreamReader(System.in));
+                        int sale = 0;
+                        try {
+                            sale = Integer.parseInt(saleBuffer.readLine());
+                            if (sale == 1) {
+                                dealer.sale(hero);
+                                returnSale = true;
+                            } else if (sale == 2) {
+                                returnCity = true;
+                                returnSale = false;
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Нужно ввести цифру от 1 или 2");
+                            returnSale = true;
+                        }
+
+
+
+
+                    } while (returnSale);
+
+
+
+
+
+
                 } else if (way == 2) {
                     System.out.println("Вы пошли темный лес");
                     returnCity = false;
@@ -51,8 +83,6 @@ public class Main {
                                 } while (newBattle < 1 || newBattle > 2);
                             }
                         } while (returnBattle && hero.getHealth() > 0);
-
-
                 } else if (way == 3) {
                     System.out.println("Вы пошли на выход");
                     returnCity = false;

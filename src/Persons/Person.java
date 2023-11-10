@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class Person {
     protected String name;
-    protected int health, agility, experience, strength, gold, experienceForEnemy;
+    protected int maxHealth, health, agility, experience, strength, gold, experienceForEnemy;
 
     public Person(String name) {
         this.name = name;
@@ -12,6 +12,9 @@ public abstract class Person {
 
     public String getName() {return name;}
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
     public int getHealth() {
         return health;
     }
@@ -51,6 +54,11 @@ public abstract class Person {
 
     public void setExperience(int exp) {
         experience = experience + exp;
+    }
+
+    public void setHealth(int hlt) {
+        health = health + hlt;
+        if (health > maxHealth) health = maxHealth;
     }
 
     public String toString() {
