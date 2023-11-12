@@ -6,10 +6,6 @@ public abstract class Person {
     protected String name;
     protected int maxHealth, health, agility, experience, strength, gold, experienceForEnemy;
 
-    public Person(String name) {
-        this.name = name;
-    }
-
     public String getName() {return name;}
 
     public int getMaxHealth() {

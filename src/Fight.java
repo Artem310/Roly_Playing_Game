@@ -1,13 +1,14 @@
+import Persons.Hero;
 import Persons.Person;
 
 import java.util.Random;
 
 public class Fight {
-    private Person person1, person2;
+    private Person hero, monster;
 
-    public Fight(Person person1, Person person2) {
-        this.person1 = person1;
-        this.person2 = person2;
+    public Fight(Hero hero, Person monster) {
+        this.hero = hero;
+        this.monster = monster;
     }
 
     public Person thisFight() {
@@ -16,37 +17,41 @@ public class Fight {
 
         do {
             if (firstAttack) {
-                int timeHealth = person1.getHealth();
-                person1.getPunch(person2.getStrength(), person2.getAgility());
-                if (person1.getHealth() == timeHealth - person2.getStrength()) {
-                    System.out.print("\n" + person2.getName() + " ударил " + person1.getName() + ": " + timeHealth + " - " + person2.getStrength() + " = " + (timeHealth - person2.getStrength()));
-                } else if (person1.getHealth() == timeHealth - 2 * person2.getStrength()) {
-                    System.out.print("\n" + person2.getName() + " нанес КРИТИЧЕСКИЙ удар " + person1.getName() + ": " + timeHealth + " - " + (2 * person2.getStrength()) + " = " + (timeHealth - person2.getStrength()));
+                int timeHealth = hero.getHealth();
+                hero.getPunch(monster.getStrength(), monster.getAgility());
+                if (hero.getHealth() == timeHealth - monster.getStrength()) {
+                    System.out.print("\n" + monster.getName() + " ударил " + hero.getName() + ": " + timeHealth + " - " + monster.getStrength() + " = " + (timeHealth - monster.getStrength()));
+                } else if (hero.getHealth() == timeHealth - 2 * monster.getStrength()) {
+                    System.out.print("\n" + monster.getName() + " нанес КРИТИЧЕСКИЙ удар " + hero.getName() + ": " + timeHealth + " - " + (2 * monster.getStrength()) + " = " + (timeHealth - monster.getStrength()));
                 } else {
-                    System.out.print("\n" + person2.getName() + " промахнулся");
+                    System.out.print("\n" + monster.getName() + " промахнулся");
                 }
             } else {
-                int timeHealth = person2.getHealth();
-                person2.getPunch(person1.getStrength(), person1.getAgility());
-                if (person2.getHealth() == timeHealth - person1.getStrength()) {
-                    System.out.print("\n" + person1.getName() + " ударил " + person2.getName() + ": " + timeHealth + " - " + person1.getStrength() + " = " + (timeHealth - person1.getStrength()));
-                } else if (person2.getHealth() == timeHealth - 2 * person1.getStrength()) {
-                    System.out.print("\n" + person1.getName() + " нанес КРИТИЧЕСКИЙ удар " + person2.getName() + ": " + timeHealth + " - " + (2 * person1.getStrength()) + " = " + (timeHealth - person1.getStrength()));
+                int timeHealth = monster.getHealth();
+                monster.getPunch(hero.getStrength(), hero.getAgility());
+                if (monster.getHealth() == timeHealth - hero.getStrength()) {
+                    System.out.print("\n" + hero.getName() + " ударил " + monster.getName() + ": " + timeHealth + " - " + hero.getStrength() + " = " + (timeHealth - hero.getStrength()));
+                } else if (monster.getHealth() == timeHealth - 2 * hero.getStrength()) {
+                    System.out.print("\n" + hero.getName() + " нанес КРИТИЧЕСКИЙ удар " + monster.getName() + ": " + timeHealth + " - " + (2 * hero.getStrength()) + " = " + (timeHealth - hero.getStrength()));
                 } else {
-                    System.out.print("\n" + person1.getName() + " промахнулся");
+                    System.out.print("\n" + hero.getName() + " промахнулся");
                 }
             }
             firstAttack = !firstAttack;
-        } while (person1.getHealth() > 0 && person2.getHealth() >  0);
-        if (person1.getHealth() > person2.getHealth()) {
-            person1.setGold(person2.getGold());
-            person1.setExperience(person2.getExperienceForEnemy());
-            return person1;
+        } while (hero.getHealth() > 0 && monster.getHealth() >  0);
+        if (hero.getHealth() > monster.getHealth()) {
+            hero.setGold(monster.getGold());
+            hero.setExperience(monster.getExperienceForEnemy());
+            return hero;
         } else {
-            person2.setGold(person1.getGold());
-            person2.setExperience(person1.getExperienceForEnemy());
-            return person2;
+            monster.setGold(hero.getGold());
+            monster.setExperience(hero.getExperienceForEnemy());
+            return monster;
         }
+    }
+
+    public Person getMonster() {
+        return monster;
     }
 
 }

@@ -4,7 +4,7 @@ import Persons.Person;
 
 public class Hero extends Person {
     public Hero(String name) {
-        super(name);
+        this.name = name;
         this.maxHealth = 100;
         this.health = 100;
         this.agility = 40;

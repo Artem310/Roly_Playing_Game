@@ -1,11 +1,11 @@
 import Persons.Goblin;
 import Persons.Hero;
 import Persons.Person;
+import Persons.Skeleton;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// остановился на том, что нужно делать торговца
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -64,7 +64,8 @@ public class Main {
                     boolean returnBattle = false;
 
                         do {
-                            Fight fight = new Fight(hero, new Goblin("Gobl"));
+                            Fight fight = new Fight(hero, new RandomMonster().getRandomMonster(new Goblin(), new Skeleton()));
+                            System.out.println("На Вас напал " + fight.getMonster().getName());
                             Person winner = fight.thisFight();
                             System.out.println("\nВ битве победил: " + winner);
                             int newBattle = 0;

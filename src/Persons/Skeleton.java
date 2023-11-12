@@ -1,14 +1,13 @@
 package Persons;
 
-import Persons.Person;
-
 public class Skeleton extends Person {
-    public Skeleton(String name) {
-        super(name);
+    public Skeleton() {
+        this.name = "Skeleton";
         this.health = 50;
-        this.agility = 5;
-        this.experience = 1;
-        this.strength = 5;
-        this.gold = 0;
+        this.agility = 15;
+        this.experience = 0;
+        this.strength = 7;
+        this.gold = 10;
+        this.experienceForEnemy = (health + agility + strength + gold) / 10;
     }
 }
