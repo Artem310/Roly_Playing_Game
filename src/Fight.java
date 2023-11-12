@@ -11,7 +11,7 @@ public class Fight {
         this.monster = monster;
     }
 
-    public Person thisFight() {
+    public Person thisFight() throws InterruptedException {
         boolean firstAttack = true;
         if ((new Random().nextInt(2) + 1) > 1) { firstAttack = false; }
 
@@ -26,6 +26,7 @@ public class Fight {
                 } else {
                     System.out.print("\n" + monster.getName() + " промахнулся");
                 }
+                Thread.sleep(200);
             } else {
                 int timeHealth = monster.getHealth();
                 monster.getPunch(hero.getStrength(), hero.getAgility());
@@ -37,11 +38,13 @@ public class Fight {
                     System.out.print("\n" + hero.getName() + " промахнулся");
                 }
             }
+            Thread.sleep(200);
             firstAttack = !firstAttack;
         } while (hero.getHealth() > 0 && monster.getHealth() >  0);
         if (hero.getHealth() > monster.getHealth()) {
             hero.setGold(monster.getGold());
             hero.setExperience(monster.getExperienceForEnemy());
+            hero.levelUp();
             return hero;
         } else {
             monster.setGold(hero.getGold());
@@ -53,5 +56,7 @@ public class Fight {
     public Person getMonster() {
         return monster;
     }
+
+
 
 }
